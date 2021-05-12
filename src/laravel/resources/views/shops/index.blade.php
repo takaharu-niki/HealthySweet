@@ -1,11 +1,23 @@
 <x-guest-layout>
-    @foreach ($shops as $shop)
-        <div class="min-h-screen flex flex-col sm:justify-center items-center bg-gray-100">
-            <a href="{{ route('shops.show', $shop->id) }}" class="max-w-screen-sm">
-                <dt>{{ $shop->name }}</dt>
-                <dd>{{ $shop->description }}</dd>
-                <img src="{{ $shop->image }}" alt="sweet img" class="h-auto">
-            </a>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Shop') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                @foreach ($shops as $shop)
+                    <div class="p-6 bg-white border-b border-gray-200">
+                        <a href="{{ route('shops.show', $shop->id) }}">
+                            <dt>{{ $shop->name }}</dt>
+                            <dd>{{ $shop->description }}</dd>
+                            <img src="{{ $shop->image }}" alt="sweet img" class="h-auto w-1/3">
+                        </a>
+                    </div>
+                @endforeach
+            </div>
         </div>
-    @endforeach
+    </div>
 </x-guest-layout>
