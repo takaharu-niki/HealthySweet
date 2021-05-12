@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ShopFactory extends Factory
@@ -22,7 +23,10 @@ class ShopFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => $this->faker->randomElement(User::pluck('id')),
+            'name' => $this->faker->word(50),
+            'description' => $this->faker->text(100),
+            'image' => $this->faker->imageUrl(360, 360, 'sweets', true, 'cakes'),
         ];
     }
 }
