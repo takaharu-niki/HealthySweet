@@ -24,4 +24,6 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('shops', ShopController::class);
+Route::get('shops', [ShopController::class, 'index'])->name('shops.index')->middleware('guest');
+Route::post('shops', [ShopController::class, 'create']);
+Route::get('shops/{id}', [ShopController::class, 'show'])->name('shops.show');
